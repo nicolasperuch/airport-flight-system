@@ -18,7 +18,6 @@ public class CreateFlightApi {
 
     @PostMapping("/flight")
     public ResponseEntity createFlight(@RequestBody CreateFlightDto createFlightDto){
-        createFlightDto.setStatus("PENDING");
         createFlightService.feedAirportExchange(createFlightDto);
         return ok(createFlightDto.toString());
     }

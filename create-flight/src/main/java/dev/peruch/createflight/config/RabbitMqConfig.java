@@ -43,7 +43,7 @@ public class RabbitMqConfig extends RabbitAirportConfig{
 
     @Bean
     public Binding bindindExchangeToCreateFlightDeadLetter() {
-        return BindingBuilder.bind(createFlightDeadLetterQueue()).to(topicExchange()).with(createFlightDeadLetter);
+        return BindingBuilder.bind(createFlightDeadLetterQueue()).to(topicExchange()).with(routingKeyToDeadLetter);
     }
 
     @Bean
