@@ -38,7 +38,7 @@ public class RabbitMqConfig extends RabbitAirportConfig{
 
     @Bean
     public Binding bindindExchangeToCreateFlightQueue() {
-        return BindingBuilder.bind(createFlightQueue()).to(topicExchange()).with(createFlightQueue);
+        return BindingBuilder.bind(createFlightQueue()).to(topicExchange()).with(routingKeyToCreateFlightQueue);
     }
 
     @Bean

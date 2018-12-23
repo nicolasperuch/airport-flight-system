@@ -19,7 +19,7 @@ public class CreateFlightService extends RabbitAirportConfig {
     private Gson gson;
 
     public void feedAirportExchange(CreateFlightDto createFlightDto){
-        rabbitTemplate.convertAndSend(exchange, createFlightQueue, buildMessage(createFlightDto));
+        rabbitTemplate.convertAndSend(exchange, routingKeyToCreateFlightQueue, buildMessage(createFlightDto));
     }
 
     public Message buildMessage(CreateFlightDto createFlightDto){

@@ -15,6 +15,8 @@ public abstract class RabbitAirportConfig {
     protected String exchange;
     @Value("${spring.rabbitmq.create-flight-queue}")
     protected String createFlightQueue;
+    @Value("${spring.rabbitmq.routing-key-to-create-flight-queue}")
+    protected String routingKeyToCreateFlightQueue;
     @Value("${spring.rabbitmq.create-flight-dead-letter}")
     protected String createFlightDeadLetter;
 }
