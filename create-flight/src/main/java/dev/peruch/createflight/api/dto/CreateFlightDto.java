@@ -50,6 +50,11 @@ public class CreateFlightDto {
         this.status = status;
     }
 
+    public CreateFlightDto withStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", CreateFlightDto.class.getSimpleName() + "[", "]")

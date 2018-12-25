@@ -3,8 +3,8 @@ package dev.peruch.createflight.config;
 import org.springframework.beans.factory.annotation.Value;
 
 public abstract class RabbitAirportConfig {
-    protected String CREATE_FLIGHT_STATUS = "flight.pending";
-    protected String routingKeyToCreateFlightQueue = CREATE_FLIGHT_STATUS;
+    protected String PENDING_STATUS = "flight.pending";
+    protected String routingKeyToCreateFlightQueue = PENDING_STATUS;
     protected String DEAD_LETTER_KEY = "flight.dead-letter";
     protected String routingKeyToDeadLetter = DEAD_LETTER_KEY;
     @Value("${spring.rabbitmq.host}")

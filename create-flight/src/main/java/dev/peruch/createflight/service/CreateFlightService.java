@@ -23,7 +23,12 @@ public class CreateFlightService extends RabbitAirportConfig {
     }
 
     public Message buildMessage(CreateFlightDto createFlightDto){
+        createFlightDto = setPendingStatus(createFlightDto);
         String bodyMessage = gson.toJson(createFlightDto);
         return new Message(bodyMessage.getBytes(), new MessageProperties());
+    }
+
+    public CreateFlightDto setPendingStatus(CreateFlightDto createFlightDto){
+        return createFlightDto.withStatus(PENDING_STATUS);
     }
 }
