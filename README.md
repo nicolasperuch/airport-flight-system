@@ -14,3 +14,4 @@ I want to learn about event sourcing, so I build this project. I know, for learn
  * [RabbitMq](https://www.rabbitmq.com/)
  * [Elasticsearch](https://www.elastic.co/products/elasticsearch)
  * [Event Store](https://eventstore.org/)
+ * [Docker](https://www.docker.com/)
