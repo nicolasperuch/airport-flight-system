@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class FeignConfig extends EventStoreConfig{
+public class FeignConfig extends EventStoreConfig {
 
     @Bean
     public EventStoreClient write() {

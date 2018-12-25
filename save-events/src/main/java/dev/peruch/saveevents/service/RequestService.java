@@ -13,6 +13,8 @@ public class RequestService {
 
     @Autowired
     private EventStoreClient eventStoreClient;
+    @Autowired
+    private ConverterService converterService;
     private Logger logger = LoggerFactory.getLogger(RequestService.class);
 
     public void writeIntoEventStore(String event) {
@@ -22,16 +24,21 @@ public class RequestService {
     }
 
     public String buildEvent(String jsonBody) {
-        String event = buildEventContent(jsonBody);
+        String eventType = getEventType(jsonBody);
+        String event = buildEventContent(eventType, jsonBody);
         logger.info("[EVENT STORE] - Event message: \n{}", event);
         return event;
     }
 
-    public String buildEventContent(String jsonBody){
+    public String getEventType(String jsonBody) {
+        return converterService.jsonToModel(jsonBody).getStatus();
+    }
+
+    public String buildEventContent(String eventType, String jsonBody){
         return  "[\n" +
                 "  {\n" +
-                "    \"eventId\": \""+ randomUUID().toString() + "\",\n" +
-                "    \"eventType\": \"test\",\n" +
+                "    \"eventId\": \"" + randomUUID().toString() + "\",\n" +
+                "    \"eventType\": \"" + eventType + "\",\n" +
                 "    \"data\": " + jsonBody +
                 "  }\n" +
                 "]";
