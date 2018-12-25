@@ -12,14 +12,16 @@ import org.springframework.stereotype.Service;
 public class UpdateService extends AirportConfig {
 
     @Autowired
-    private  ConverterService converterService;
+    private ConverterService converterService;
+    @Autowired
+    private ElasticsearchService elasticsearchService;
     private Logger logger = LoggerFactory.getLogger(UpdateService.class);
 
     public void startUpdateProcess(Event event){
         CreateFlightModel createFlightModel = converterService.eventToModel(event);
         if (isEventRelevant(createFlightModel)) {
+            Object response = elasticsearchService.saveFlight(createFlightModel);
             //update database
-            //update es
             logger.info("event update into es and database!");
         } else {
             logger.info("event was not relevant to business :'(");
@@ -34,5 +36,6 @@ public class UpdateService extends AirportConfig {
     public boolean isStatusCommit(CreateFlightModel createFlightModel){
         return createFlightModel.getStatus().equalsIgnoreCase(STATUS_COMMIT);
     }
+
 
 }

@@ -23,9 +23,21 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	springCloudVersion = 'Finchley.RELEASE'
+}
+
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	implementation('com.geteventstore:eventstore-client_2.12:5.0.8')
-	implementation('com.google.code.gson:gson:2.8.5')
+	implementation('org.springframework.cloud:spring-cloud-starter-openfeign')
+	implementation('io.github.openfeign:feign-okhttp:9.7.0')
+	implementation('io.github.openfeign:feign-gson:9.7.0')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
