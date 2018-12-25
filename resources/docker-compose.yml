@@ -1,0 +1,10 @@
+rabbitmq:
+  image: rabbitmq:management
+  ports:
+    - "5672:5672"
+    - "15672:15672"
+event-store:
+  image: eventstore/eventstore
+  ports:
+    - "1113:1113"
+    - "2113:2113"
