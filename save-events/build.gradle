@@ -34,6 +34,7 @@ dependencies {
 	implementation('io.github.openfeign:feign-gson:9.7.0')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
+
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"

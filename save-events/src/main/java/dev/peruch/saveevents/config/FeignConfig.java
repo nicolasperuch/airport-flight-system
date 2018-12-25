@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class FeignConfig extends EventStoreConfig {
 
     @Bean
-    public EventStoreClient write() {
+    public EventStoreClient eventStoreClient() {
         return Feign
                 .builder()
                 .target(EventStoreClient.class, buildEventStoreUri());
