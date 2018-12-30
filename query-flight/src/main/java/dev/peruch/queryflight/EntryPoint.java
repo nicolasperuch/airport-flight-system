@@ -25,12 +25,12 @@ public class EntryPoint {
     final Closeable closeable = connection.subscribeToStream("basestream", new SubscriptionObserver<Event>() {
         @Override
         public void onLiveProcessingStart(Closeable subscription) {
-            system.log().info("live processing started");
+            system.log().info("Live processing started");
         }
 
         @Override
         public void onEvent(Event event, Closeable subscription) {
-            logger.info("event received: \n {}", event.toString());
+            logger.info("Event received: \n {}", event.toString());
             updateService.startUpdateProcess(event);
         }
 
@@ -41,7 +41,7 @@ public class EntryPoint {
 
         @Override
         public void onClose() {
-            system.log().error("subscription closed");
+            system.log().error("Subscription closed");
         }
     }, false, null);
 }

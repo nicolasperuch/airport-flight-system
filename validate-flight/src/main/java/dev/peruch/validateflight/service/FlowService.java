@@ -1,6 +1,8 @@
 package dev.peruch.validateflight.service;
 
 import dev.peruch.validateflight.model.CreateFlightModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,16 +16,17 @@ public class FlowService {
     private ValidateFlightService validateFlightService;
     @Autowired
     private RabbitService rabbitService;
+    private Logger logger = LoggerFactory.getLogger(FlowService.class);
 
     public void startFlow(Message message) {
         CreateFlightModel createFlightModel = buildCreateFlightDto(message);
-
+        logger.info("Validating event");
+        logger.info("model: " + createFlightModel.toString());
         createFlightModel = isValidFlight(createFlightModel) ?
                 updateFlightStatus(createFlightModel, "flight.valid") :
                 updateFlightStatus(createFlightModel, "flight.denied");
-
+        logger.info("Event was send to: " + createFlightModel.getStatus());
         feedExchange(createFlightModel);
-        System.out.println(createFlightModel.toString());
     }
 
     private boolean isValidFlight(CreateFlightModel createFlightModel){

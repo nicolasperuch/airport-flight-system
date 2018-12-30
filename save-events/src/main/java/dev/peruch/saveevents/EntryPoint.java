@@ -18,6 +18,7 @@ public class EntryPoint {
 
     @RabbitListener(queues = "flight-events")
     public void receive(@Payload Message message) {
+
         String jsonBody = converterService.messageToJson(message);
         String event = eventStoreService.buildEvent(jsonBody);
         eventStoreService.writeIntoEventStore(event);

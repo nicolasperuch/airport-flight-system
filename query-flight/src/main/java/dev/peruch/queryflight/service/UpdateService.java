@@ -22,9 +22,9 @@ public class UpdateService extends AirportConfig {
         if (isEventRelevant(createFlightModel)) {
             Object response = elasticsearchService.saveFlight(createFlightModel);
             //update database
-            logger.info("event update into es and database!");
+            logger.info("Event update into es and database!");
         } else {
-            logger.info("event was not relevant to business :'(");
+            logger.info("Event was not relevant :'(");
         }
 
     }
